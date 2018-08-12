@@ -1,23 +1,41 @@
 'use strict'
 
 // Library imports
-const express = require('express');
+const
+    path = require('path'),
+    express = require('express'),
+    http = require('http'),
+    socketIO = require('socket.io');
+
 
 // Local imports
 const {port} = require('../config');
 
 // Setting up the path for the public directory
 const
-    path = require('path'),
     publicPath = path.join(__dirname, '../public');
 
 // Initializing the app
-const app = express();
+var app = express();
+
+// Initializing the server
+var server = http.createServer((app));
+
+// Initializing the web socket
+var io = socketIO(server);
 
 // Set up the middleware
 app.use(express.static(publicPath));
 
+io.on('connection', (socket) => {
+    console.log('New user connected');
+
+    socket.on('disconnect', () => {
+        console.log('User was disconnected');
+    })
+})
+
 // Set up the app's port
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server is listening on ${port}`);
 });

@@ -4,16 +4,17 @@
   "description": "Real-time chat ap",
   "main": "index.js",
   "scripts": {
-      "start": "node server/server.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-      "node": "8.11.3",
-      "npm": "6.2.0"
+    "node": "8.11.3",
+    "npm": "6.2.0"
   },
   "author": "Mostafa Medhat",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
   }
 }
